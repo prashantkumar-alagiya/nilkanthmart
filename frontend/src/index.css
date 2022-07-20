@@ -1,0 +1,45 @@
+main {
+  min-height: 80vh;
+}
+
+.rating span {
+  margin: 0.1rem 0px;
+  font-size: 14px;
+}
+
+.rounded h3 {
+  padding: 1rem 0px;
+}
+
+.font-small {
+  font-size: 12px;
+}
+
+.font-small strong {
+  font-weight: bold;
+}
+
+.rating .span-margin-small {
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.cart-update .btn-padding-small {
+  padding: 0.25rem 0.75rem;
+}
+
+.cart-screen .row:first-child {
+  align-items: center;
+}
+
+.cart-update .row {
+  align-items: initial;
+}
+
+.cart-update .row > * {
+  padding-left: 0;
+}
+
+.cart-update .col {
+  padding-right: 0;
+}
