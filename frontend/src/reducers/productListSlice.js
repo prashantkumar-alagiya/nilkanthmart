@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchProducts = createAsyncThunk('fetch/products', async() => {
+export const fetchProducts = createAsyncThunk('fetch/products', async({keyword = '', pageNumber = ''}) => {
     try{
-        const {data} = await axios.get('/api/products');
+        const {data} = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`);
         return data;
     }
     catch(e){
@@ -25,7 +25,9 @@ const productListSlice = createSlice({
             state.isLoading = true;
         },
         [fetchProducts.fulfilled] : (state,action) => {
-            state.productList = action.payload;
+            state.productList = action.payload.products;
+            state.page = action.payload.page;
+            state.pages = action.payload.pages;
             state.isLoading = false
         },
         [fetchProducts.rejected] : (state,action) => {

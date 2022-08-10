@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap'
 const Footer = () => {
   return (
     <Container className='text-center py-3'>
-        this is Footer 
+        Copy Right NilkanthMart &copy; 2022
     </Container>
   )
 }

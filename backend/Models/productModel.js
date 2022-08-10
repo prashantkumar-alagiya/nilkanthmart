@@ -13,8 +13,13 @@ const reviewSchema = mongoose.Schema({
     comment: {
         type: String,
         required: true
+    },
+    user: {
+        ref: 'User',
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     }
-})
+},{timestamps : true})
 
 const productSchema = mongoose.Schema({
     user: {

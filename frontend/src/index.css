@@ -2,6 +2,10 @@ main {
   min-height: 80vh;
 }
 
+footer {
+  position: fixed;
+}
+
 .rating span {
   margin: 0.1rem 0px;
   font-size: 14px;
@@ -41,5 +45,13 @@ main {
 }
 
 .cart-update .col {
+  padding-right: 0;
+}
+
+.py-3 {
+  padding: 3rem 0;
+}
+
+.orderlist .row > * {
   padding-right: 0;
 }

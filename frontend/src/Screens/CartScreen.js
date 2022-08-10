@@ -1,16 +1,18 @@
 import React from 'react';
 import { Row, Col, ListGroup, Image, Button, Card} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Message from '../Components/Message';
 import {actions} from '../reducers/cartSlice';
 
 const CartScreen = () => {
-    const cartItems = useSelector((state) => state.cart.cartItems);
+    const cartItems = useSelector((state) => state?.cart?.cartItems);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {userInfo} = useSelector((state) => state.userLogin);
 
     const handleCheckout = () => {
-
+        navigate('/shipping');
     }
 
   return (
@@ -18,9 +20,9 @@ const CartScreen = () => {
     <Row>
         <Col md = "8" >
         <h1>Cart Screen</h1>
-        {cartItems.length === 0 ? <Message><>your cart is empty <Link to = '/'>go back</Link></></Message> : (
+        {cartItems?.length === 0 ? <Message><>your cart is empty <Link to = '/'>go back</Link></></Message> : (
             <ListGroup>
-                {cartItems.map((item) => {
+                {cartItems?.map((item) => {
                     return  <ListGroup.Item key = {item.id}>
                         <Row>
                             <Col md = "2">
@@ -59,12 +61,12 @@ const CartScreen = () => {
                     <ListGroup>
                         <ListGroup.Item>
                             <h2>SUBTOTAL ({cartItems.reduce((acc,item) => acc + item.qty, 0)}) Items</h2>
-                            $ {cartItems.reduce((acc,item) => (acc + (item.qty * item.price)), 0).toFixed(2)}
+                            $ {cartItems?.reduce((acc,item) => (acc + (item.qty * item.price)), 0).toFixed(2)}
                         </ListGroup.Item>
                     </ListGroup>
                     <ListGroup>
                         <ListGroup.Item>
-                            <button type = 'button' variant = 'light' className = 'btn-block' onClick={handleCheckout}>Proceed to checkout </button>
+                            <button type = 'button' variant = 'light' className = 'btn-block' disabled = {userInfo &&  cartItems?.length > 0 ? false : true} onClick={handleCheckout}>Proceed to checkout </button>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card>
